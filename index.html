@@ -3,151 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>patimamashop | Sevimli Dostlarımızın Marketi</title>
-    <link rel="icon" type="image/png" href="https://www.google.com/favicon.ico">
+    <title>patimamashop | Evcil Hayvan Dünyası</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            orange: '#F97316',
-                            amber: '#F59E0B',
-                            light: '#FFF7ED',
-                            dark: '#7C2D12'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        brand: ['Quicksand', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
     <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .brand-font { font-family: 'Quicksand', sans-serif; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-amber-50/40 text-slate-800 flex flex-col min-h-screen font-sans">
+<body class="bg-amber-50/40 text-slate-800 flex flex-col min-h-screen">
 
     <!-- Üst Bilgi Barı -->
-    <div class="bg-brand-orange text-white text-xs py-2 px-4 text-center font-bold tracking-widest uppercase shadow-sm">
-        🐾 500 TL ve Üzeri Kargo Bedava!
+    <div class="bg-orange-500 text-white text-xs py-1.5 px-4 text-center font-medium tracking-wide">
+        🐾 500 TL ve Üzeri Alışverişlerde Kargo Bedava! | Hızlı Gönderim
     </div>
 
     <!-- Navigasyon -->
     <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-orange-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
             <a href="#" class="flex items-center gap-2 group">
-                <div class="w-10 h-10 rounded-2xl bg-brand-orange text-white flex items-center justify-center text-xl shadow-lg shadow-orange-500/30 group-hover:scale-105 transition-transform">
+                <div class="w-10 h-10 rounded-2xl bg-orange-500 text-white flex items-center justify-center text-xl shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-paw"></i>
                 </div>
-                <div class="flex flex-col leading-none">
-                    <span class="text-xl font-bold tracking-tight text-slate-900 font-brand">patimama<span class="text-brand-orange">shop</span></span>
-                    <span class="text-[10px] text-slate-400 font-bold tracking-wider uppercase">Evcil Hayvan Dünyası</span>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-tight text-slate-900 brand-font leading-none">patimama<span class="text-orange-500">shop</span></span>
+                    <span class="text-[10px] text-slate-400 font-medium">sevimli dostlarımızın marketi</span>
                 </div>
             </a>
 
             <!-- Arama Çubuğu -->
-            <div class="hidden md:flex flex-1 max-w-md mx-6 relative">
-                <input id="searchInput" type="text" placeholder="Mama, oyuncak veya aksesuar ara..." 
-                    class="w-full pl-10 pr-4 py-2.5 bg-slate-100 rounded-full text-sm border-2 border-transparent focus:border-brand-orange focus:bg-white focus:outline-none transition-all shadow-inner">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3 text-slate-400 text-sm"></i>
+            <div class="hidden md:flex flex-1 max-w-md mx-4 relative">
+                <input id="searchInput" type="text" placeholder="Mama, kraker, tırmalama tahtası ara..." 
+                    class="w-full pl-10 pr-4 py-2 bg-slate-100 rounded-full text-sm border border-transparent focus:border-orange-400 focus:bg-white focus:outline-none transition-all">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-slate-400 text-sm"></i>
             </div>
 
             <!-- Sepet Butonu -->
-            <button onclick="toggleCart()" class="relative bg-brand-light hover:bg-orange-100 text-brand-orange p-3 rounded-full transition-colors flex items-center justify-center shadow-sm">
+            <button onclick="toggleCart()" class="relative bg-orange-50 hover:bg-orange-100 text-orange-600 p-2.5 rounded-full transition-colors flex items-center gap-2">
                 <i class="fa-solid fa-basket-shopping text-lg"></i>
-                <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-brand-amber text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+                <span id="cartCountBadge" class="bg-orange-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
             </button>
         </div>
     </header>
 
-    <!-- Renkli Banner -->
-    <section class="bg-gradient-to-br from-brand-orange via-orange-500 to-brand-amber text-white py-12 px-4 sm:px-6 shadow-xl">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-            <div class="text-center md:text-left space-y-3">
-                <span class="inline-block bg-white/20 backdrop-blur-md text-white text-xs font-bold uppercase px-4 py-1.5 rounded-full tracking-widest border border-white/30 shadow-sm">
-                    En İyi Dostlarımıza
-                </span>
-                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight font-brand drop-shadow-md">
-                    Sevimli Dostunuz İçin <br/>Her Şey Burada!
-                </h1>
-                <p class="text-white/90 text-base max-w-lg font-medium leading-relaxed drop-shadow-sm">
-                    Kedi mamaları, köpek aksesuarları, kuş yemleri ve eğitici oyuncaklar kapınızda.
-                </p>
+    <!-- Banner -->
+    <section class="bg-gradient-to-r from-orange-400 to-amber-500 text-white py-8 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left space-y-2">
+                <span class="bg-white/20 text-white text-xs uppercase px-3 py-1 rounded-full font-bold tracking-wider">Taze & Orijinal Ürünler</span>
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Can Dostunuza En İyi Bakım!</h1>
+                <p class="text-white/90 text-sm max-w-md">Kedi mamaları, köpek aksesuarları, kuş yemleri ve eğitici oyuncaklar kapınızda.</p>
             </div>
-            <div class="flex gap-4">
-                <button onclick="filterCategory('kedi')" class="bg-white text-brand-orange px-6 py-3 rounded-2xl font-bold text-sm shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-cat"></i> Kedi Dünyası
-                </button>
-                <button onclick="filterCategory('kopek')" class="bg-white text-brand-orange px-6 py-3 rounded-2xl font-bold text-sm shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-dog"></i> Köpek Dünyası
-                </button>
+            <div class="flex gap-2">
+                <button onclick="filterCategory('kedi')" class="bg-white text-orange-600 px-4 py-2 rounded-xl font-bold text-sm shadow hover:bg-orange-50 transition">Kedi Dünyası</button>
+                <button onclick="filterCategory('kopek')" class="bg-white text-orange-600 px-4 py-2 rounded-xl font-bold text-sm shadow hover:bg-orange-50 transition">Köpek Dünyası</button>
+                <button onclick="filterCategory('kus')" class="bg-white text-orange-600 px-4 py-2 rounded-xl font-bold text-sm shadow hover:bg-orange-50 transition">Kuş Dünyası</button>
             </div>
         </div>
     </section>
 
     <!-- Kategori Filtre Butonları -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        <div class="flex gap-2 overflow-x-auto pb-2 hide-scrollbar whitespace-nowrap">
-            <button onclick="filterCategory('all', this)" class="cat-btn px-3 py-2 rounded-xl bg-brand-orange text-white font-medium text-xs md:text-sm shadow-sm shadow-orange-500/20 transition-all">Tüm Ürünler</button>
-            <button onclick="filterCategory('kedi', this)" class="cat-btn px-3 py-2 rounded-xl bg-white text-slate-700 hover:bg-orange-50 border border-slate-200 font-medium text-xs md:text-sm shadow-sm transition-all">🐱 Kedi Dünyası</button>
-            <button onclick="filterCategory('kedi-oyun', this)" class="cat-btn px-3 py-2 rounded-xl bg-white text-slate-700 hover:bg-orange-50 border border-slate-200 font-medium text-xs md:text-sm shadow-sm transition-all">🧶 Kedi Eşya & Oyun</button>
-            <button onclick="filterCategory('kopek', this)" class="cat-btn px-3 py-2 rounded-xl bg-white text-slate-700 hover:bg-orange-50 border border-slate-200 font-medium text-xs md:text-sm shadow-sm transition-all">🐶 Köpek Dünyası</button>
-            <button onclick="filterCategory('kopek-oyun', this)" class="cat-btn px-3 py-2 rounded-xl bg-white text-slate-700 hover:bg-orange-50 border border-slate-200 font-medium text-xs md:text-sm shadow-sm transition-all">🎾 Köpek Eşya & Oyun</button>
-            <button onclick="filterCategory('kus', this)" class="cat-btn px-3 py-2 rounded-xl bg-white text-slate-700 hover:bg-orange-50 border border-slate-200 font-medium text-xs md:text-sm shadow-sm transition-all">🦜 Kuş Yem & Oyuncak</button>
+        <div class="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">
+            <button onclick="filterCategory('all')" class="cat-btn px-4 py-2 rounded-xl bg-orange-500 text-white text-sm font-semibold whitespace-nowrap shadow-sm">Tüm Ürünler</button>
+            <button onclick="filterCategory('kedi')" class="cat-btn px-4 py-2 rounded-xl bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 text-sm font-semibold whitespace-nowrap">🐱 Kedi Dünyası</button>
+            <button onclick="filterCategory('kedi-oyun')" class="cat-btn px-4 py-2 rounded-xl bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 text-sm font-semibold whitespace-nowrap">🧶 Kedi Eşya & Oyun</button>
+            <button onclick="filterCategory('kopek')" class="cat-btn px-4 py-2 rounded-xl bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 text-sm font-semibold whitespace-nowrap">🐶 Köpek Dünyası</button>
+            <button onclick="filterCategory('kopek-oyun')" class="cat-btn px-4 py-2 rounded-xl bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 text-sm font-semibold whitespace-nowrap">🎾 Köpek Eşya & Oyun</button>
+            <button onclick="filterCategory('kus')" class="cat-btn px-4 py-2 rounded-xl bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 text-sm font-semibold whitespace-nowrap">🦜 Kuş Yem & Oyuncak</button>
         </div>
     </div>
 
     <!-- Ürün Listesi Grid -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <!-- Dinamik Ürün Kartları Buraya Eklenir -->
         </div>
     </main>
 
     <!-- Sepet Modal (Drawer) -->
-    <div id="cartModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden justify-end transition-all">
+    <div id="cartModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs hidden flex justify-end">
         <div class="bg-white w-full max-w-md h-full flex flex-col shadow-2xl animate-in slide-in-from-right duration-300">
-            <div class="p-6 border-b flex items-center justify-between bg-white">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-brand-light text-brand-orange flex items-center justify-center">
-                        <i class="fa-solid fa-basket-shopping text-lg"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-slate-900 font-brand">Sepetiniz</h3>
+            <div class="p-4 border-b flex items-center justify-between bg-slate-50">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-basket-shopping text-orange-500"></i>
+                    <h3 class="font-bold text-lg text-slate-800">Alışveriş Sepetiniz</h3>
                 </div>
-                <button onclick="toggleCart()" class="text-slate-400 hover:text-slate-600 transition-colors p-2 hover:bg-slate-100 rounded-full">
+                <button onclick="toggleCart()" class="text-slate-400 hover:text-slate-600 p-1">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
 
             <!-- Kargo Çubuğu -->
-            <div class="p-5 bg-orange-50 border-b border-orange-100">
-                <div class="flex justify-between text-xs font-bold text-brand-dark mb-2">
+            <div class="p-4 bg-orange-50/70 border-b border-orange-100">
+                <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1.5">
                     <span id="shippingText">Kargo Bedava için 500 TL üzeri harcayın!</span>
-                    <span id="shippingStatusText"></span>
+                    <span id="shippingStatusText" class="text-orange-600 font-bold"></span>
                 </div>
-                <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden shadow-inner">
-                    <div id="shippingProgressBar" class="bg-gradient-to-r from-brand-orange to-brand-amber h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                <div class="w-full bg-slate-200 rounded-full h-2">
+                    <div id="shippingProgressBar" class="bg-orange-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
                 </div>
             </div>
 
-            <div id="cartItemsList" class="flex-1 overflow-y-auto p-6 space-y-6">
+            <div id="cartItemsList" class="flex-1 overflow-y-auto p-4 space-y-4">
                 <!-- Sepet Ürünleri -->
             </div>
 
-            <div class="p-6 border-t bg-slate-50 space-y-4">
-                <div class="flex justify-between text-lg font-bold text-slate-900">
-                    <span>Toplam:</span>
-                    <span id="cartTotalPrice" class="text-brand-orange">0.00 TL</span>
+            <div class="p-4 border-t bg-slate-50 space-y-3">
+                <div class="flex justify-between text-base font-bold text-slate-800">
+                    <span>Toplam Tutar:</span>
+                    <span id="cartTotalPrice" class="text-orange-600">0.00 TL</span>
                 </div>
-                <button onclick="openCheckoutModal()" class="w-full bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 rounded-2xl transition shadow-xl shadow-orange-500/25 flex items-center justify-center gap-3 active:scale-95">
+                <button onclick="openCheckoutModal()" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition shadow-md shadow-orange-500/20 flex items-center justify-center gap-2">
                     <span>Siparişi Tamamla</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -156,45 +126,35 @@
     </div>
 
     <!-- Sipariş Tamamlama Modalı -->
-    <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden items-center justify-center p-4 transition-all">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-3xl relative animate-in zoom-in-95 duration-300">
-            <button onclick="closeCheckoutModal()" class="absolute top-6 right-8 text-slate-400 hover:text-slate-600 transition-colors p-2 hover:bg-slate-100 rounded-full">
-                <i class="fa-solid fa-xmark text-2xl"></i>
+    <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-            <div class="flex items-center gap-4 mb-6">
-                <div class="w-14 h-14 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-2xl">
-                    <i class="fa-solid fa-truck-fast"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-900 font-brand">Sipariş Bilgileri</h2>
-                    <p class="text-sm text-slate-500 font-medium">Teslimat için gerekli bilgileri doldurun.</p>
-                </div>
-            </div>
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 brand-font">Sipariş Bilgileri</h2>
             
             <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-4">
-                <div class="grid grid-cols-1 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wider">Ad Soyad</label>
-                        <input required type="text" placeholder="Adınız Soyadınız" class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-2xl text-sm focus:border-brand-orange focus:bg-white focus:outline-none transition-all">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wider">Telefon</label>
-                        <input required type="tel" placeholder="05XX XXX XX XX" class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-2xl text-sm focus:border-brand-orange focus:bg-white focus:outline-none transition-all">
-                    </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Ad Soyad</label>
+                    <input required type="text" placeholder="Adınız Soyadınız" class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-orange-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wider">Teslimat Adresi</label>
-                    <textarea required rows="3" placeholder="Mahalle, Cadde, No, Daire, İlçe/Şehir" class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-2xl text-sm focus:border-brand-orange focus:bg-white focus:outline-none transition-all"></textarea>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Telefon</label>
+                    <input required type="tel" placeholder="05XX XXX XX XX" class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-orange-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wider">Ödeme Yöntemi</label>
-                    <select class="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-2xl text-sm focus:border-brand-orange focus:bg-white focus:outline-none transition-all appearance-none cursor-pointer">
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Teslimat Adresi</label>
+                    <textarea required rows="2" placeholder="Mahalle, Cadde, No, Daire, İlçe/Şehir" class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-orange-500"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Ödeme Yöntemi</label>
+                    <select class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-orange-500 bg-white">
                         <option>Kapıda Nakit / Kredi Kartı</option>
                         <option>Online Kredi Kartı</option>
                         <option>Havale / EFT</option>
                     </select>
                 </div>
-                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-2xl transition shadow-xl active:scale-95 mt-4">
+                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-lg">
                     Siparişi Onayla & Gönder
                 </button>
             </form>
@@ -202,23 +162,13 @@
     </div>
 
     <!-- Alt Bilgi (Footer) -->
-    <footer class="bg-slate-900 text-slate-400 py-12 px-4 text-center mt-auto border-t border-slate-800">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex items-center justify-center gap-2 group mb-6">
-                <div class="w-10 h-10 rounded-2xl bg-brand-orange text-white flex items-center justify-center text-xl shadow-lg shadow-orange-500/30 group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-paw"></i>
-                </div>
-                <span class="text-xl font-bold tracking-tight text-white font-brand">patimama<span class="text-brand-orange">shop</span></span>
-            </div>
-            <p class="text-slate-500 text-sm font-medium mb-1">patimamashop © 2026</p>
-            <p class="text-slate-600 text-xs font-medium">Tüm hakları saklıdır. Can dostlarımız için sevgiyle hazırlandı.</p>
-        </div>
+    <footer class="bg-slate-900 text-slate-400 py-8 px-4 text-center text-xs mt-auto border-t border-slate-800">
+        <p class="font-bold text-slate-200 text-sm mb-1">patimamashop © 2026</p>
+        <p>Tüm hakları saklıdır. Can dostlarımız için sevgiyle hazırlandı.</p>
     </footer>
 
     <!-- JavaScript Kodları -->
     <script>
-        const imagePlaceholder = "https://images.unsplash.com/photo-1598133894008-61f7fdb8cc3a?q=80&w=600&auto=format&fit=crop"; 
-
         const products = [
             {
                 id: 1,
@@ -227,7 +177,7 @@
                 badge: "🐱 Kedi Maması",
                 price: 400.00,
                 desc: "Zengin tavuk eti formülü, böbrek ve kilo dengesi koruması.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 2,
@@ -236,7 +186,7 @@
                 badge: "🐱 Kedi Maması",
                 price: 400.00,
                 desc: "Pırıl pırıl tüyler ve sindirim desteği sağlayan özel içerik.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 3,
@@ -245,7 +195,7 @@
                 badge: "🐱 Kedi Maması",
                 price: 450.00,
                 desc: "Bağışıklık güçlendirici yavru kedi gelişim formülü.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 4,
@@ -254,7 +204,7 @@
                 badge: "🧶 Kedi Eşya & Oyun",
                 price: 320.00,
                 desc: "Doğal jüt ipli tırmalama alanı ve hareketli ponpon oyuncağı.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 5,
@@ -263,7 +213,7 @@
                 badge: "🧶 Kedi Eşya & Oyun",
                 price: 85.00,
                 desc: "Avcılık güdüsünü harekete geçiren esnek tüy oltası.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 6,
@@ -272,7 +222,7 @@
                 badge: "🐶 Köpek Maması",
                 price: 950.00,
                 desc: "Yüksek proteinli güçlü kas yapısı destekleyici kuru mama.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 7,
@@ -281,7 +231,7 @@
                 badge: "🎾 Köpek Eşya & Oyun",
                 price: 110.00,
                 desc: "Diş ve diş eti sağlığını koruyan sağlam çekiştirme halatı.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 8,
@@ -290,7 +240,7 @@
                 badge: "🎾 Köpek Eşya & Oyun",
                 price: 135.00,
                 desc: "İçine ödül maması saklanabilen zeka ve eğlence topu.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 9,
@@ -299,7 +249,7 @@
                 badge: "🦜 Kuş Yemi",
                 price: 120.00,
                 desc: "Sarı akdarı, aspur ve vitaminli tohum zengini karışım.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 10,
@@ -308,7 +258,7 @@
                 badge: "🦜 Kuş Yemi",
                 price: 95.00,
                 desc: "Fırınlanmış leziz meyve ve tohumlardan oluşan ödül krakeri.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 11,
@@ -317,7 +267,7 @@
                 badge: "🪶 Kuş Oyun & Eşya",
                 price: 75.00,
                 desc: "Doğal ahşap tünekli, çıngıraklı kafes oyun salıncağı.",
-                image: imagePlaceholder
+                image: "https://images.unsplash.com/photo-1522858547137-f1dcec554f55?w=600&auto=format&fit=crop&q=80"
             }
         ];
 
@@ -335,31 +285,24 @@
                 return p.category === currentFilter;
             });
 
-            if (filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-20 text-slate-400 font-bold">Bu kategoride henüz ürün bulunmuyor.</div>`;
-                return;
-            }
-
             filtered.forEach(p => {
                 grid.innerHTML += `
-                    <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-orange-500/10 transition-all flex flex-col group">
-                        <div class="relative h-64 bg-slate-200 overflow-hidden">
-                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-brand-dark text-xs font-bold px-4 py-1.5 rounded-full shadow-lg border border-white/50">
+                    <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all flex flex-col">
+                        <div class="relative h-48 bg-slate-100 overflow-hidden">
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 left-2 bg-white/90 backdrop-blur-xs text-slate-800 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-xs">
                                 ${p.badge}
                             </span>
                         </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
                             <div>
-                                <h3 class="font-bold text-slate-900 text-base leading-snug group-hover:text-brand-orange transition-colors font-brand">
-                                    ${p.name}
-                                </h3>
-                                <p class="text-xs text-slate-500 mt-2 font-medium line-clamp-2">${p.desc}</p>
+                                <h3 class="font-bold text-slate-800 text-sm leading-snug">${p.name}</h3>
+                                <p class="text-xs text-slate-500 mt-1 line-clamp-2">${p.desc}</p>
                             </div>
-                            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
-                                <span class="font-extrabold text-brand-orange text-xl tracking-tight">${p.price.toFixed(2)} TL</span>
-                                <button onclick="addToCart(${p.id})" class="bg-slate-900 hover:bg-brand-orange text-white text-sm font-bold px-5 py-3 rounded-2xl transition-all shadow-lg active:scale-95 flex items-center gap-2">
-                                    <i class="fa-solid fa-plus text-xs"></i> Ekle
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-50">
+                                <span class="font-extrabold text-orange-600 text-base">${p.price.toFixed(2)} TL</span>
+                                <button onclick="addToCart(${p.id})" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-plus"></i> Ekle
                                 </button>
                             </div>
                         </div>
@@ -368,14 +311,12 @@
             });
         }
 
-        function filterCategory(cat, element) {
+        function filterCategory(cat) {
             currentFilter = cat;
             document.querySelectorAll(".cat-btn").forEach(btn => {
-                btn.className = "cat-btn px-3 py-2 rounded-xl bg-white text-slate-700 hover:bg-orange-50 border border-slate-200 font-medium text-xs md:text-sm shadow-sm transition-all";
+                btn.className = "cat-btn px-4 py-2 rounded-xl bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 text-sm font-semibold whitespace-nowrap";
             });
-            if (event.target) {
-                event.target.className = "cat-btn px-3 py-2 rounded-xl bg-brand-orange text-white font-medium text-xs md:text-sm shadow-sm shadow-orange-500/20 transition-all";
-            }
+            event.target.className = "cat-btn px-4 py-2 rounded-xl bg-orange-500 text-white text-sm font-semibold whitespace-nowrap shadow-sm";
             renderProducts();
         }
 
@@ -396,42 +337,30 @@
             const countBadge = document.getElementById("cartCountBadge");
             const progressBar = document.getElementById("shippingProgressBar");
             const shippingStatusText = document.getElementById("shippingStatusText");
-            const shippingText = document.getElementById("shippingText");
 
             list.innerHTML = "";
             let total = 0;
             let count = 0;
 
             if (cart.length === 0) {
-                list.innerHTML = `
-                    <div class="text-center py-12 text-slate-400 font-bold space-y-4">
-                        <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto text-slate-300">
-                            <i class="fa-solid fa-basket-shopping text-3xl"></i>
-                        </div>
-                        <p>Sepetiniz şu anda boş.</p>
-                    </div>
-                `;
+                list.innerHTML = `<div class="text-center py-12 text-slate-400 text-sm"><i class="fa-solid fa-bag-shopping text-4xl mb-2 text-slate-200"></i><p>Sepetiniz şu anda boş.</p></div>`;
             } else {
                 cart.forEach(item => {
                     total += item.price * item.qty;
                     count += item.qty;
                     list.innerHTML += `
-                        <div class="flex items-center gap-4 bg-white p-4 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50">
-                            <img src="${item.image}" class="w-16 h-16 object-cover rounded-2xl shadow-sm">
+                        <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <img src="${item.image}" class="w-14 h-14 object-cover rounded-lg">
                             <div class="flex-1 min-w-0">
-                                <h4 class="text-sm font-bold text-slate-900 truncate font-brand">${item.name}</h4>
-                                <span class="text-xs font-bold text-brand-orange">${item.price.toFixed(2)} TL</span>
-                                <div class="flex items-center gap-3 mt-2">
-                                    <button onclick="changeQty(${item.id}, -1)" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center transition-colors">
-                                        <i class="fa-solid fa-minus text-xs"></i>
-                                    </button>
-                                    <span class="text-sm font-bold text-slate-900 w-6 text-center">${item.qty}</span>
-                                    <button onclick="changeQty(${item.id}, 1)" class="w-8 h-8 bg-brand-light hover:bg-orange-100 text-brand-orange rounded-full flex items-center justify-center transition-colors">
-                                        <i class="fa-solid fa-plus text-xs"></i>
-                                    </button>
+                                <h4 class="text-xs font-bold text-slate-800 truncate">${item.name}</h4>
+                                <span class="text-xs font-bold text-orange-600">${item.price.toFixed(2)} TL</span>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 bg-white border rounded text-xs">-</button>
+                                    <span class="text-xs font-bold">${item.qty}</span>
+                                    <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 bg-white border rounded text-xs">+</button>
                                 </div>
                             </div>
-                            <button onclick="removeFromCart(${item.id})" class="text-slate-300 hover:text-red-500 transition-colors p-2">
+                            <button onclick="removeFromCart(${item.id})" class="text-slate-300 hover:text-red-500 p-1">
                                 <i class="fa-solid fa-trash-can text-sm"></i>
                             </button>
                         </div>
@@ -445,16 +374,12 @@
             // Kargo barı
             const percent = Math.min((total / 500) * 100, 100);
             progressBar.style.width = `${percent}%`;
-            
             if (total >= 500) {
                 shippingStatusText.innerText = "Kargo Bedava!";
-                shippingStatusText.className = "text-green-600 font-bold";
-                shippingText.innerText = "Tebrikler! Kargonuz bedava.";
+                shippingStatusText.className = "text-emerald-600 font-bold";
             } else {
-                const remaining = 500 - total;
-                shippingStatusText.innerText = `${remaining.toFixed(2)} TL kaldı`;
-                shippingStatusText.className = "text-brand-orange font-bold";
-                shippingText.innerText = "Kargo Bedava için 500 TL üzeri harcayın!";
+                shippingStatusText.innerText = `${(500 - total).toFixed(2)} TL kaldı`;
+                shippingStatusText.className = "text-orange-600 font-bold";
             }
         }
 
@@ -475,26 +400,20 @@
         }
 
         function toggleCart() {
-            const modal = document.getElementById("cartModal");
-            modal.classList.toggle("hidden");
-            modal.classList.toggle("flex");
+            document.getElementById("cartModal").classList.toggle("hidden");
         }
 
         function openCheckoutModal() {
             if (cart.length === 0) {
-                alert("Sepetiniz boş! Lütfen ürün ekleyin.");
+                alert("Sepetiniz boş!");
                 return;
             }
             toggleCart();
-            const modal = document.getElementById("checkoutModal");
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
+            document.getElementById("checkoutModal").classList.remove("hidden");
         }
 
         function closeCheckoutModal() {
-            const modal = document.getElementById("checkoutModal");
-            modal.classList.add("hidden");
-            modal.classList.remove("flex");
+            document.getElementById("checkoutModal").classList.add("hidden");
         }
 
         function handleOrderSubmit(e) {
